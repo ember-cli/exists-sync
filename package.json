@@ -12,8 +12,13 @@
     "exists",
     "lstatSync"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ember-cli/exists-sync.git"
+  },
   "author": "Jake Bixby",
   "license": "ISC",
+  "homepage": "https://github.com/ember-cli/exists-sync#readme",
   "devDependencies": {
     "chai": "^3.0.0",
     "fs-extra": "^0.19.0",
