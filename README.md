@@ -1,5 +1,6 @@
 exists-sync
 ===========
+[![Build Status](https://travis-ci.org/ember-cli/exists-sync.svg)](https://travis-ci.org/ember-cli/exists-sync)
 
 Replacement for [fs.existsSync()](https://nodejs.org/api/fs.html#fs_fs_exists_path_callback), which is being deprecated: 
 
