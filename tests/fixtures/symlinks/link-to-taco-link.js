@@ -1,0 +1,1 @@
+tests/fixtures/symlinks/link-to-taco.js
