@@ -1,1 +1,1 @@
-tests/fixtures/burrito
+../burrito.js

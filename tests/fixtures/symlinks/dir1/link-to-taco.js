@@ -1,1 +1,1 @@
-tests/fixtures/taco.js
+../../taco.js

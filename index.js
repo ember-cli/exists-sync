@@ -1,32 +1,66 @@
 'use strict';
-
+var path         = require('path');
+var root         = process.cwd();
+var accessSync   = require('fs').accessSync;
 var lstatSync    = require('fs').lstatSync;
 var readlinkSync = require('fs').readlinkSync;
 
-function existsSync(path,parent){
-  var stats, link;
+function existsSync(filepath, parent){
+  var depth, link, linkError, linkRoot, relativeLink, resolvedLink, stats;
+  var resolvedPath = path.resolve(filepath);
   try {
-    stats = lstatSync(path);
+    stats = lstatSync(resolvedPath);
     // if symlink, check if target
     if (stats && stats.isSymbolicLink()) {
-      link = readlinkSync(path);
-      if (parent && parent === link) {
-        var err = new Error('Circular symlink detected: ' + link);
-        throw err;
+      link         = readlinkSync(resolvedPath);
+      linkRoot     = path.dirname(resolvedPath);
+      
+      if (link && link.indexOf('..') !== -1) {
+        // resolve relative path
+        depth = pathDepth(link);
+        relativeLink = path.relative(path.resolve(linkRoot, depth), path.basename(link));
+        resolvedLink = path.resolve(linkRoot, relativeLink);
+        
+      } else {
+        // assume root and resolve
+        resolvedLink = path.resolve(root, link);
       }
-      return existsSync(link,path);
+      
+      try {
+        accessSync(path.dirname(resolvedLink));
+        
+      } catch (err) {
+        if (err.code === "ENOENT") {
+          // Log message for user so they can investigate
+          console.log(err.message);
+          console.log('Please verify that the symlink for ' + resolvedPath + ' can be resolved from ' + root + '.');
+        }
+      }
+      
+      if (parent && parent === resolvedLink) {
+        linkError = new Error('Circular symlink detected: ' + resolvedPath + ' -> ' + resolvedLink);
+        throw linkError;
+      }
+      return existsSync(resolvedLink, resolvedPath);
+      
     }
     return true;
-  } catch(e) {
-    if (e.message.match(/Circular symlink detected/)) {
-      throw e;
+    
+  } catch (err) {
+    if (err.message.match(/Circular symlink detected/)) {
+      throw err;
     }
-    return checkError(e);
+    
+    return checkError(err);
   }
 }
 
-function checkError(e) {
-    return e && e.code === "ENOENT" ? false : true;
+function checkError(err) {
+  return err && err.code === "ENOENT" ? false : true;
+}
+
+function pathDepth(filepath) {
+  return new Array(filepath.split(path.sep).length).join('..' + path.sep);
 }
 
 module.exports = existsSync;
