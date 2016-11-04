@@ -12,7 +12,7 @@ function existsSync(filepath, parent){
     stats = lstatSync(resolvedPath);
     // if symlink, check if target
     if (stats && stats.isSymbolicLink()) {
-      link         = readlinkSync(resolvedPath);
+      link         = path.normalize(readlinkSync(resolvedPath));
       linkRoot     = path.dirname(resolvedPath);
       
       if (link && link.indexOf('..') !== -1) {
