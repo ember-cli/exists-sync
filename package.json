@@ -1,6 +1,6 @@
 {
   "name": "exists-sync",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "existsSync that also checks for symlinks",
   "main": "index.js",
   "files": [
