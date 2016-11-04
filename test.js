@@ -73,7 +73,12 @@ describe('exists-sync symlinks', function(){
     expect(exists('./tmp/tacos/link-to-taco-link.js'), 'I heard you like symlinked symlinked symlinks').to.be.true;
     expect(exists('./tmp/tacos/deep-link-to-taco-link.js'), 'I heard you like pointlessly symlinked symlinked symlinks').to.be.true;
   });
-  
+
+  it('supports non-normalized paths', function() {
+    fs.symlinkSync('./tmp/../tmp/taco.js', './tmp/abnormal-link-to-taco.js');
+    expect(exists('./tmp/abnormal-link-to-taco.js')).to.be.true;
+  });
+
   it('guards against cyclic symlinks', function() {
     fs.symlinkSync('./tmp/link-to-taco.js', './tmp/link-to-taco-back.js');
     fs.unlinkSync('./tmp/link-to-taco.js');
