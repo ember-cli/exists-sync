@@ -3,3 +3,12 @@ node_js:
   - "0.12"
   - "0.10"
   - "iojs"
+
+deploy:
+  provider: npm
+  email: stefan.penner+ember-cli@gmail.com
+  api_key:
+    secure: erg47opYnIIo67CH5eHIcaS9otLGNBJuC6kArbPOXkZTkUnSinJiFYafUGk6XFA3iBimCsoQ4zklQXPKPhSlD9EAljeF6xazFTbvdMuJrK1sXEobAWTibGBJMq7hVMKOlczFXJtShsrRsiV4sTbqJr9mKVs/fn1z8+JDhMUv9KbN77FbvRJuCviI811iJT/mrS1LexSitMaPsPyLT5hWAgQve05351nBPTb0hI2ikeiGa71ViioSgXA9cR2VgXAFYZsbeReAuAgpKqFOVERXM8DTLZMqCb5uQBMP0XmslA/juuCbcdDVYstALiTKQxRQtuVH/CT57mVQvxKrRgDyvof9+BmA2VE1aTWQoGJyHbhbeVSkV9Az/jV6H/a//KbRH9Ev9LQEw+wT3jPW8zIA5jGb8vQgjkedgKuhaV0Al4hfd5RVpFTaZH/exN8BnVlby2e7YMiAWnWEXjHO7gJbhB/TlO7pQ5QP9Q8qQETgVl6GF/fJTRV6ocBkoaKM0BV5sk9+JH94Z1kzYGkUpM0Ku8aTssUa8dyEBOZayvRuwKmkE1UWsxlRrAykRv0yTenp0qL56Uotu6RzmIPdi44D0RmqiJ2V+216t3dYXOYEgpBUEp6h3Ejb2rwBZFOeyf0fkmisLcegoQKJ634OzilHdFnl8j422AoXIp4mvB2GAis=
+  on:
+    tags: true
+    repo: ember-cli/exists-sync
