@@ -2,7 +2,7 @@ exists-sync
 ===========
 [![Build Status](https://travis-ci.org/ember-cli/exists-sync.svg)](https://travis-ci.org/ember-cli/exists-sync) [![Build status](https://ci.appveyor.com/api/projects/status/c05xyb4s80pn66yo?svg=true)](https://ci.appveyor.com/project/embercli/exists-sync)
 
-Replacement for [fs.existsSync()](https://nodejs.org/api/fs.html#fs_fs_exists_path_callback), which is being deprecated: 
+Replacement for [fs.existsSync()](https://nodejs.org/api/fs.html#fs_fs_exists_path_callback) (which has been un-deprecated in Node.js since [6.8.0](https://github.com/nodejs/node/pull/8364)): 
 
 > "fs.exists() is an anachronism and exists only for historical reasons. There should almost never be a reason to use it in your own code.
 
